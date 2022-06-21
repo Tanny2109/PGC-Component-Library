@@ -1,6 +1,6 @@
 {
     "name": "pgc-component-library",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "React component library for internal workings in PGC",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
@@ -56,5 +56,9 @@
     "peerDependencies": {
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/Tanny2109/PGC-Component-Library.git"
     }
 }
