@@ -1,6 +1,6 @@
 {
     "name": "pgc-component-library",
-    "version": "1.0.1",
+    "version": "1.0.0-1",
     "description": "React component library for internal workings in PGC",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
