@@ -1,1 +1,2 @@
-export * from './Table';
+import MyTable from './Table';
+export default MyTable;

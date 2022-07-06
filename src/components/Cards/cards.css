@@ -1,0 +1,47 @@
+.cardContainer {
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px -5px;
+    transition: 0.5s;
+    animation: linear;
+    background-color: lavenderblush;
+}
+
+.cardContainer:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px 0px;
+}
+
+.imageContainer img {
+    overflow: hidden;
+    height: 200px;
+    width: 300px;
+    /* object-fit: fill; */
+}
+
+.cardContent {
+    margin: 1rem;
+    margin-top: 0.5rem;
+}
+
+h3,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.cardTitle {
+    margin-bottom: 0.5rem;
+}
+
+.myButtonContainer {
+    text-align: center;
+    height: 3em;
+}
+
+.myButton {
+    width: 10em;
+    height: 3em;
+    background-color: lavender;
+    border: 1px solid black;
+}

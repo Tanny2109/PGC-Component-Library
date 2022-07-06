@@ -1,38 +1,56 @@
+const prod = process.env.NODE_ENV === 'production';
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-    entry: path.resolve(__dirname, './src/index.ts'),
+    mode: prod ? 'production' : 'development',
+    entry: './src/export.ts',
     output: {
-        path: path.resolve(__dirname, './dist'),
-        libraryTarget: 'umd',
-        umdNamedDefine: true,
-        filename: 'index.js'
+        path: __dirname + '/dist/'
     },
-
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)?$/,
+                test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react']
-                    }
-                }
+                resolve: {
+                    extensions: ['.ts', '.tsx', '.js', '.json']
+                },
+                use: 'ts-loader'
             },
             {
-                test: /\.css$/,
-                use: 'css-loader'
+                test: /\.css$/i,
+                use: [
+                    {
+                        loader: 'css-loader'
+                    },
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            esModule: false
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: function () {
+                                return [require('autoprefixer')];
+                            }
+                        }
+                    },
+                    {
+                        loader: 'sass-loader'
+                    }
+                ]
             }
         ]
     },
-
-    externalsPresets: { node: true },
-    externals: [nodeExternals()],
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js']
-    }
+    devtool: prod ? undefined : 'source-map',
+    devServer: {
+        open: true
+    },
+    plugins: [new MiniCssExtractPlugin({ filename: 'css/[name].css' }), new CleanWebpackPlugin()]
 };
